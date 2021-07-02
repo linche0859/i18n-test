@@ -33,7 +33,10 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run:  npm publish --tag ${{steps.tag_version.outputs.new_tag}}
+        run: |
+          latestTag=(${{steps.tag_version.outputs.new_tag}})
+          currentTag=${latestTag:1}
+          npm publish --tag ${currentTag}
         env:
           OWNER: ${{ secrets.OWNER }}
           TOKEN: ${{ secrets.TOKEN }}
