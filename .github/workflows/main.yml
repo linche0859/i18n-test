@@ -25,10 +25,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.7
+        with:
+          versionSpec: '5.x'
+
       - name: Set version number in package.json
-        run: sed -i "s/1.0.0/$GITVERSIONNUMBER/g" package.json
-        env:
-          GITVERSIONNUMBER: ${{GitVersion.SemVer}}
+        run: |
+          sed -i "s/1.0.0/$GITVERSION_SEMVER/g" package.json
+          echo "SemVer: $GITVERSION_SEMVER"
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
