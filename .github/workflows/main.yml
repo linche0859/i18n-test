@@ -30,12 +30,9 @@ jobs:
         env:
           OWNER: ${{ secrets.OWNER }}
 
-      - name: Install npm packages
-        run: npm install
-
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run:  npm run prepublish | npm run postpublish
+        run:  npm install && npm run prepublish && npm run postpublish
         env:
           OWNER: ${{ secrets.OWNER }}
           TOKEN: ${{ secrets.TOKEN }}
