@@ -27,11 +27,16 @@ jobs:
 
       - name: Update package.json version
         run: |
-          curVersion=$(cat package.json | grep version |  awk '{print $2}' | sed 's/"//g' | sed 's/,//g')
-          echo "${curVersion}"
-          cat package.json | sed "s/"${curVersion}"/$1/g" >  temp
-          cat temp
+          latestTag=$(git describe --tags)
+          currentVersion=${latestTag:5:1}
+          cat package.json | sed "s/"1.0.0"/"1.0.${currentVersion+1}"/g" >  temp
           mv temp package.json
+
+      - name: Push git tag
+        run: |
+          latestTag=$(git describe --tags)
+          currentVersion=${latestTag:5:1}
+          git push origin "v1.0.${currentVersion+1}"
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
