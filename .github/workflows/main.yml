@@ -25,9 +25,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Set git config
+        run: git config --global user.email "aa10327tw@gmail.com" && git config --global user.name "${OWNER}"
+        env:
+          OWNER: ${{ secrets.OWNER }}
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: npm version patch && npm publish
+        run:  npm version patch && npm publish
         env:
           OWNER: ${{ secrets.OWNER }}
           TOKEN: ${{ secrets.TOKEN }}
