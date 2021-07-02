@@ -28,7 +28,9 @@ jobs:
       - name: Update package.json version
         run: |
           latestTag=$(git describe --tags)
+          echo ${latestTag}
           currentVersion=${latestTag:5:1}
+          echo ${currentVersion}
           cat package.json | sed "s/"1.0.0"/"1.0.${currentVersion+1}"/g" >  temp
           mv temp package.json
 
