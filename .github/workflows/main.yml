@@ -41,7 +41,7 @@ jobs:
         run: |
           latestTag=(${{steps.tag_version.outputs.new_tag}})
           currentTag=${latestTag:1}
-          npm version ${currentTag} prerelease --preid="^" && npm publish
+          npm version ${currentTag} -i prerelease --preid="^" && npm publish
         env:
           OWNER: ${{ secrets.OWNER }}
           TOKEN: ${{ secrets.TOKEN }}
