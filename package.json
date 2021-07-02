@@ -1,15 +1,17 @@
 {
   "name": "@linche0859/i18n-test",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "index.js",
   "repository": "git://github.com/linche0859/i18n-test.git",
   "author": "che.lin <aa10327tw@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "npm-auto-version": "^1.0.0"
-  },
+  "dependencies": {},
   "scripts": {
     "prepublish": "npm-auto-version",
-    "postpublish": "git push origin --tags"
+    "postpublish": "git push origin --tags",
+    "bump": "grunt bump"
+  },
+  "devDependencies": {
+    "grunt-bump": "^0.8.0"
   }
 }
