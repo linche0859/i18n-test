@@ -30,7 +30,7 @@ jobs:
           curVersion=$(cat package.json | grep version |  awk '{print $2}' | sed 's/"//g' | sed 's/,//g')
           echo "${curVersion}"
           cat package.json | sed "s/"${curVersion}"/$1/g" >  temp
-          echo temp
+          cat temp
           mv temp package.json
 
       # Runs a single command using the runners shell
