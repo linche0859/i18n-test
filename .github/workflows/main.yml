@@ -28,6 +28,7 @@ jobs:
       - name: Update package.json version
         run: |
           curVersion=$(cat package.json | grep version |  awk '{print $2}' | sed 's/"//g' | sed 's/,//g')
+          echo "${curVersion}"
           cat package.json | sed "s/"${curVersion}"/$1/g" >  temp
           mv temp package.json
 
