@@ -7,8 +7,6 @@
   "license": "MIT",
   "dependencies": {},
   "scripts": {
-    "prepublish": "npm-auto-version",
-    "postpublish": "git push origin --tags",
     "bump": "grunt bump"
   },
   "devDependencies": {
