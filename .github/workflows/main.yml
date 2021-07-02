@@ -32,9 +32,10 @@ jobs:
           github_token: ${{ secrets.TOKEN }}
 
       - name: Set git config
-        run: git config --global user.email "aa10327tw@gmail.com" && git config --global user.name "${OWNER}"
+        run: git config --global user.email "${EMAIL}" && git config --global user.name "${OWNER}"
         env:
           OWNER: ${{ secrets.OWNER }}
+          EMAIL: ${{ secrets.EMAIL }}
 
       # Runs a single command using the runners shell
       - name: Run script
