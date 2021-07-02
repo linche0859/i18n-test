@@ -31,18 +31,10 @@ jobs:
         with:
           github_token: ${{ secrets.TOKEN }}
 
-      - name: Update package.json version
-        run: |
-          latestTag=${{ steps.tag_version.outputs.new_tag }}
-          echo ${latestTag}
-          currentVersion=${latestTag:5:1}
-          echo ${currentVersion}
-          cat package.json | sed "s/"1.0.0"/"1.0.${currentVersion+1}"/g" >  temp
-          mv temp package.json
-
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run:  npm publish
+        run:  npm publish --tag ${{steps.tag_version.outputs.new_tag}}
         env:
           OWNER: ${{ secrets.OWNER }}
           TOKEN: ${{ secrets.TOKEN }}
+
