@@ -31,8 +31,13 @@ jobs:
         with:
           github_token: ${{ secrets.TOKEN }}
 
+      - name: Set git config
+        run: git config --global user.email "aa10327tw@gmail.com" && git config --global user.name "${OWNER}"
+        env:
+          OWNER: ${{ secrets.OWNER }}
+
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Run script
         run: |
           latestTag=(${{steps.tag_version.outputs.new_tag}})
           currentTag=${latestTag:1}
